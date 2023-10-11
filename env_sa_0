@@ -1,0 +1,61 @@
+NAMESPACE         NAME                                 SECRETS   AGE
+default           default                              0         10h
+default           prometheus-operator                  0         44m
+kube-node-lease   default                              0         10h
+kube-public       default                              0         10h
+kube-system       attachdetach-controller              0         10h
+kube-system       bootstrap-signer                     0         10h
+kube-system       certificate-controller               0         10h
+kube-system       clusterrole-aggregation-controller   0         10h
+kube-system       coredns                              0         10h
+kube-system       cronjob-controller                   0         10h
+kube-system       daemon-set-controller                0         10h
+kube-system       default                              0         10h
+kube-system       deployment-controller                0         10h
+kube-system       disruption-controller                0         10h
+kube-system       endpoint-controller                  0         10h
+kube-system       endpointslice-controller             0         10h
+kube-system       endpointslicemirroring-controller    0         10h
+kube-system       ephemeral-volume-controller          0         10h
+kube-system       expand-controller                    0         10h
+kube-system       generic-garbage-collector            0         10h
+kube-system       horizontal-pod-autoscaler            0         10h
+kube-system       job-controller                       0         10h
+kube-system       kube-proxy                           0         10h
+kube-system       namespace-controller                 0         10h
+kube-system       node-controller                      0         10h
+kube-system       persistent-volume-binder             0         10h
+kube-system       pod-garbage-collector                0         10h
+kube-system       pv-protection-controller             0         10h
+kube-system       pvc-protection-controller            0         10h
+kube-system       replicaset-controller                0         10h
+kube-system       replication-controller               0         10h
+kube-system       resourcequota-controller             0         10h
+kube-system       root-ca-cert-publisher               0         10h
+kube-system       service-account-controller           0         10h
+kube-system       service-controller                   0         10h
+kube-system       statefulset-controller               0         10h
+kube-system       storage-provisioner                  0         10h
+kube-system       token-cleaner                        0         10h
+kube-system       ttl-after-finished-controller        0         10h
+kube-system       ttl-controller                       0         10h
+
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: prometheus-yann
+Name:         prometheus-yann
+Labels:       <none>
+Annotations:  <none>
+PolicyRule:
+  Resources                    Non-Resource URLs  Resource Names  Verbs
+  ---------                    -----------------  --------------  -----
+  endpoints                    []                 []              [get list watch]
+  nodes/metrics                []                 []              [get list watch]
+  nodes                        []                 []              [get list watch]
+  pods                         []                 []              [get list watch]
+  services                     []                 []              [get list watch]
+  ingresses.networking.k8s.io  []                 []              [get list watch]
+                               [/metrics]         []              [get]
+  configmaps                   []                 []              [get]

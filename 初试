@@ -7,3 +7,42 @@ kubectl apply -f sample_ServiceM.yaml
 
 kubectl get ServiceMonitor -A
 default     sample-monitor   64s
+
+实例及服务监控基本建立
+
+
+下面确认权限问题
+kubectl get sa -A >> env_sa_0
+
+
+建立 serviceMonitor prometheus
+
+kubectl get -n default prometheus prometheus -w
+NAME         VERSION   DESIRED   READY   RECONCILED   AVAILABLE   AGE
+prometheus                       1       True         True        5m18s
+
+
+所有yaml 执行完后，建立了pod及svc的监控关系，最后再建一个 expose 把prometheus服务（9090）外放出来
+因为是linxu 服务器环境，还要用 nginx做一个反代
+
+curl -i http://192.168.39.221:30900/graph
+
+
+server {
+    listen 80;
+    server_name prometheusyann.com;
+
+    location / {
+        proxy_pass http://192.168.39.221:30900;  # 将请求转发给本地的Web应用服务器
+        proxy_set_header Host $host;       # 传递原始主机头
+        proxy_set_header X-Real-IP $remote_addr;  # 传递原始客户端IP
+    }
+}
+
+可以看到监控面板了
+
+
+
+
+
+
