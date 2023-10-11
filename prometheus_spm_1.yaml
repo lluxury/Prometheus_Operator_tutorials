@@ -1,16 +1,16 @@
 apiVersion: monitoring.coreos.com/v1
 kind: Prometheus
 metadata:
-  name: prometheus-sm
+  name: prometheus
 spec:
-  podMetadata:
-    labels:
-      prometheus: prometheus      
   serviceAccountName: prometheus-yann
   serviceMonitorSelector:
+    matchLabels:
+      team: frontend  
+  podMonitorSelector:
     matchLabels:
       team: frontend
   resources:
     requests:
       memory: 400Mi
-  enableAdminAPI: false
+  enableAdminAPI: true

@@ -22,7 +22,7 @@ NAME         VERSION   DESIRED   READY   RECONCILED   AVAILABLE   AGE
 prometheus                       1       True         True        5m18s
 
 
-所有yaml 执行完后，建立了pod及svc的监控关系，最后再建一个 expose 把prometheus服务（9090）外放出来
+所有yaml 执行完后，建立了pod及svc的监控关系(业务以svc为主)，最后再建一个 expose 把prometheus服务（9090）外放出来
 因为是linxu 服务器环境，还要用 nginx做一个反代
 
 curl -i http://192.168.39.221:30900/graph
@@ -45,4 +45,14 @@ server {
 
 
 
+问题：
+有些组件看不到，同类型下名字是唯一的，文档上的例子给的不太好
+kubectl get prometheus --all-namespaces
+NAMESPACE   NAME            VERSION   DESIRED   READY   RECONCILED   AVAILABLE   AGE
+default     prometheus                          1       True         True        4h14m
+default     prometheus-pm                       0       True         False       16s
+default     prometheus-sm                       0       True         False       8s
 
+注意要显性标记 标签prometheus: prometheus ，否则默认会跟名字走
+ServiceMonitor,PodMonitor 都会新起一个pod
+分开写配置文件会同名被冲掉，把2个配置写在一个文件就好（但要注意匹配规则，一样会出现数据重叠!!）

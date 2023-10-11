@@ -1,0 +1,20 @@
+
+随便查一些数据吧
+
+process_cpu_seconds_total{container="app-pod", endpoint="web", instance="10.244.0.6:8080", job="default/sample-monitor-p", namespace="default", pod="yann-deploy-749776897c-6k4jf"}
+
+PodMonitor 对应
+http_requests_total{job="default/sample-monitor-p"}
+服务的HTTP请求总数,根据状态码有多条数据
+
+http_request_duration_microseconds_sum
+这个查询会显示所有服务的HTTP请求的总响应时间
+
+
+问题：
+01 container_cpu_usage_seconds_total指标结果为空
+需要配置性能统计 cadvisor ，太麻烦了，所以放弃了
+
+
+02 container_memory_usage_bytes
+同上
