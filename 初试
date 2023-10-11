@@ -1,0 +1,9 @@
+
+建设要监控的实例：
+vi sample_app.yaml
+kubectl apply -f sample_app.yaml
+kubectl apply -f sample_app_svc.yaml
+kubectl apply -f sample_ServiceM.yaml
+
+kubectl get ServiceMonitor -A
+default     sample-monitor   64s

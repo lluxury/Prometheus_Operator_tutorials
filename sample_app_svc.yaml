@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: yann-svc
+  labels:
+    app: example-app-l
+spec:
+  selector:
+    app: example-app-l
+  ports:
+  - name: web
+    port: 8080

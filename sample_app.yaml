@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yann-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: example-app-l
+  template:
+    metadata:
+      labels:
+        app: example-app-l
+    spec:
+      containers:
+      - name: app-pod
+        image: fabxc/instrumented_app
+        ports:
+        - name: web
+          containerPort: 8080

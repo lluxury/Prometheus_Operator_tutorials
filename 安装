@@ -1,0 +1,10 @@
+
+准备一个干净的环境
+kubectl get all -A > env0
+
+kubectl wait --for=condition=Ready pods -l  app.kubernetes.io/name=prometheus-operator -n default
+
+pod/prometheus-operator-58c87c9567-h46fd
+service/prometheus-operator
+
+operator 就安装完成了，比手动的方式方便太多
